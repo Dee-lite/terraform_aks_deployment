@@ -1,10 +1,10 @@
-terraform { 
-  cloud { 
-    
-    organization = "VichelCollective" 
+terraform {
+  cloud {
 
-    workspaces { 
-      name = "kubernetes-azure-aks" 
-    } 
-  } 
+    organization = "VichelCollective"
+
+    workspaces {
+      name = "kubernetes-azure-aks"
+    }
+  }
 }

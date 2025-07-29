@@ -20,9 +20,9 @@ resource "azurerm_kubernetes_cluster" "this" {
   resource_group_name = azurerm_resource_group.this.name
   dns_prefix          = "devaks1"
 
-  kubernetes_version        = local.eks_version
-  private_cluster_enabled   = false
-  node_resource_group       = "${local.resource_group_name}-${local.env}-${local.eks_name}"
+  kubernetes_version      = local.eks_version
+  private_cluster_enabled = false
+  node_resource_group     = "${local.resource_group_name}-${local.env}-${local.eks_name}"
 
 
 
@@ -33,9 +33,9 @@ resource "azurerm_kubernetes_cluster" "this" {
   workload_identity_enabled = true
 
   network_profile {
-    network_plugin = "azure"
-    dns_service_ip = "10.0.64.10"
-    service_cidr   = "10.0.64.0/19"
+    network_plugin    = "azure"
+    dns_service_ip    = "10.0.64.10"
+    service_cidr      = "10.0.64.0/19"
     load_balancer_sku = "standard"
   }
 
@@ -46,7 +46,7 @@ resource "azurerm_kubernetes_cluster" "this" {
     orchestrator_version = local.eks_version
     type                 = "VirtualMachineScaleSets"
     node_count           = 1
-    
+
 
     node_labels = {
       role = "general"
