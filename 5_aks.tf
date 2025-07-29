@@ -41,7 +41,7 @@ resource "azurerm_kubernetes_cluster" "this" {
 
   default_node_pool {
     name                 = "general"
-    vm_size              = "Standard_D2s_v3"
+    vm_size              = "Standard_B2s"
     vnet_subnet_id       = azurerm_subnet.subnet1.id
     orchestrator_version = local.eks_version
     type                 = "VirtualMachineScaleSets"
