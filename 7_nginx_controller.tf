@@ -1,4 +1,5 @@
 provider "kubernetes" {
+  alias                  = "aks"
   host                   = azurerm_kubernetes_cluster.this.kube_config.0.host
   client_certificate     = base64decode(azurerm_kubernetes_cluster.this.kube_config.0.client_certificate)
   client_key             = base64decode(azurerm_kubernetes_cluster.this.kube_config.0.client_key)
@@ -6,20 +7,24 @@ provider "kubernetes" {
 }
 
 provider "helm" {
+  alias = "aks"
   kubernetes {
-    config_path = ""
+    host                   = azurerm_kubernetes_cluster.this.kube_config.0.host
+    client_certificate     = base64decode(azurerm_kubernetes_cluster.this.kube_config.0.client_certificate)
+    client_key             = base64decode(azurerm_kubernetes_cluster.this.kube_config.0.client_key)
+    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.this.kube_config.0.cluster_ca_certificate)
   }
 }
-
 resource "helm_release" "external_nginx" {
-  name = "external"
-
+  provider         = helm.aks
+  name             = "external"
   repository       = "https://kubernetes.github.io/ingress-nginx"
   chart            = "ingress-nginx"
   namespace        = "ingress"
   create_namespace = true
   version          = "4.8.0"
 
-  values = [file("${path.module}/values/ingress.yaml")]
+  values     = [file("${path.module}/values/ingress.yaml")]
   depends_on = [azurerm_kubernetes_cluster.this]
 }
+
