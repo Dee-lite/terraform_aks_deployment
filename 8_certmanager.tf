@@ -11,4 +11,5 @@ resource "helm_release" "cert_manager" {
     name  = "installCRDs"
     value = "true"
   }
+  depends_on = [azurerm_kubernetes_cluster.this]
 }

@@ -19,4 +19,5 @@ resource "helm_release" "external_nginx" {
   version          = "4.8.0"
 
   values = [file("${path.module}/values/ingress.yaml")]
+  depends_on = [azurerm_kubernetes_cluster.this]
 }
