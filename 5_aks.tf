@@ -46,6 +46,7 @@ resource "azurerm_kubernetes_cluster" "this" {
     orchestrator_version = local.eks_version
     type                 = "VirtualMachineScaleSets"
     node_count           = 1
+     temporary_name_for_rotation = "tempnp" #due to cluster update
 
 
     node_labels = {
