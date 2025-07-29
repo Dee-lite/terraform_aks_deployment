@@ -1,8 +1,12 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "4.37.0"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "= 1.3.2" # Pinned to the version that supports kubernetes block
     }
   }
 }
