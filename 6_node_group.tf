@@ -1,7 +1,7 @@
 resource "azurerm_kubernetes_cluster_node_pool" "this" {
   name                  = "internal"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.this.id
-  vm_size               = "Standard_B2s"
+  vm_size               = "Standard_D2s_v3"
   vnet_subnet_id        = azurerm_subnet.subnet1.id
   node_count            = 2
   auto_scaling_enabled  = true
