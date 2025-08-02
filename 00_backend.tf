@@ -1,7 +1,7 @@
 terraform {
   cloud {
 
-    organization = "VichelCollective"
+    organization = "Vichel"
 
     workspaces {
       name = "kubernetes-azure-aks"
